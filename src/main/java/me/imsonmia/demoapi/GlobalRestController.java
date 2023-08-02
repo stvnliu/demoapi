@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import me.imsonmia.demoapi.EmployeeRepository.Employee;
 import me.imsonmia.demoapi.EmployeeRepository.EmployeeRepository;
 import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
-import me.imsonmia.demoapi.TransactionsRepository.Transaction;
-import me.imsonmia.demoapi.TransactionsRepository.TransactionRepository;
+import me.imsonmia.demoapi.TransactionRepository.Transaction;
+import me.imsonmia.demoapi.TransactionRepository.TransactionRepository;
 
 @RestController
 @RequestMapping(value = "/api", produces = "application/json")

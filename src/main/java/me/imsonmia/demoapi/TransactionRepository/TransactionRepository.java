@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.TransactionsRepository;
+package me.imsonmia.demoapi.TransactionRepository;
 
 import java.util.List;
 

@@ -1,4 +1,6 @@
-package me.imsonmia.demoapi.TransactionsRepository;
+package me.imsonmia.demoapi.TransactionRepository;
+
+import java.sql.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ public class Transaction {
     private Long senderId;
     private Long receiverId;
     private String note;
+    private Date transactionDate;
 
     public long getId() {
         return id;
@@ -30,6 +33,10 @@ public class Transaction {
 
     public String getNote() {
         return note;
+    }
+
+    public Date getTransactionDate() {
+        return transactionDate;
     }
 
     public void setId(long id) {
@@ -52,9 +59,13 @@ public class Transaction {
         this.note = note;
     }
 
+    public void setTransactionDate(Date transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
     @Override
     public String toString() {
         return "{" + "id=" + id + ", transactionAmountCents=" + transactionAmountCents + ", senderId=" + senderId
-                + ", receiverId=" + receiverId + ", note=" + note;
+                + ", receiverId=" + receiverId + ", note=" + note + ", transactionDate=" + transactionDate.toString();
     }
 }

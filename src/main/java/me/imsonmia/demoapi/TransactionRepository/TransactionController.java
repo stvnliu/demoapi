@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.TransactionsRepository;
+package me.imsonmia.demoapi.TransactionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class TransactionController {
                     transaction.setSenderId(newTransaction.getSenderId());
                     transaction.setReceiverId(newTransaction.getReceiverId());
                     transaction.setNote(newTransaction.getNote());
-
+                    transaction.setTransactionDate(newTransaction.getTransactionDate());
                     return repository.save(transaction);
                 }).orElseGet(() -> {
                     newTransaction.setId(id);
