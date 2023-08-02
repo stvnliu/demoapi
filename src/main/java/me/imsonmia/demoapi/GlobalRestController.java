@@ -30,10 +30,13 @@ class GlobalRestController {
     int getAllOutstandingPayments(@PathVariable Long id) {
         Employee targetEmployee = empRepo.findById(id).orElseThrow(() -> new DataNotFoundException());
         int salaryInCents = targetEmployee.getMonthlyPayrollCents();
+
         Calendar calendarInitial = Calendar.getInstance();
         calendarInitial.setTime(targetEmployee.getJoinDate());
+
         Calendar calendarCurrent = Calendar.getInstance();
         calendarCurrent.setTime(new Date());
+
         int months = (calendarCurrent.get(Calendar.YEAR) - calendarInitial.get(Calendar.YEAR)) * 12 +
                 calendarCurrent.get(Calendar.MONTH) - calendarInitial.get(Calendar.MONTH);
         int paymentTargetInCents = salaryInCents * months;
