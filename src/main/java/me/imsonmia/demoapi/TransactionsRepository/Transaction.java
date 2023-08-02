@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Transaction {
     private @Id @GeneratedValue Long id;
-    private int TransactionAmountCents;
+    private int transactionAmountCents;
     private Long senderId;
     private Long receiverId;
     private String note;
@@ -17,7 +17,7 @@ public class Transaction {
     }
 
     public int getTransactionAmountCents() {
-        return TransactionAmountCents;
+        return transactionAmountCents;
     }
 
     public long getSenderId() {
@@ -37,7 +37,7 @@ public class Transaction {
     }
 
     public void setTransactionAmountCents(int transactionAmountCents) {
-        TransactionAmountCents = transactionAmountCents;
+        this.transactionAmountCents = transactionAmountCents;
     }
 
     public void setSenderId(long senderID) {
@@ -50,5 +50,11 @@ public class Transaction {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + "id=" + id + ", transactionAmountCents=" + transactionAmountCents + ", senderId=" + senderId
+                + ", receiverId=" + receiverId + ", note=" + note;
     }
 }
