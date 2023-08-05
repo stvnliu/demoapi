@@ -1,12 +1,16 @@
 package me.imsonmia.demoapi;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.imsonmia.demoapi.EmployeeRepository.Employee;
@@ -46,5 +50,14 @@ class GlobalRestController {
             totalCompletedTransferAmountInCents += t.getTransactionAmountCents();
         }
         return paymentTargetInCents - totalCompletedTransferAmountInCents;
+    }
+
+    @GetMapping("/statement")
+    List<Transaction> getStatement(
+            @RequestParam("start_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam("end_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        List<Transaction> transactionStatement = new ArrayList<>();
+
+        return transactionStatement;
     }
 }
