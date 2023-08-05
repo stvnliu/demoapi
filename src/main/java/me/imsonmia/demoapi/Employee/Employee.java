@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.EmployeeRepository;
+package me.imsonmia.demoapi.Employee;
 
 import java.util.Date;
 

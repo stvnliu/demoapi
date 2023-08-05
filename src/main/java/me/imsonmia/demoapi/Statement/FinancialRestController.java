@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi;
+package me.imsonmia.demoapi.Statement;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.imsonmia.demoapi.EmployeeRepository.Employee;
-import me.imsonmia.demoapi.EmployeeRepository.EmployeeRepository;
+import me.imsonmia.demoapi.Employee.Employee;
+import me.imsonmia.demoapi.Employee.EmployeeRepository;
 import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
-import me.imsonmia.demoapi.TransactionRepository.Transaction;
-import me.imsonmia.demoapi.TransactionRepository.TransactionRepository;
+import me.imsonmia.demoapi.Transaction.Transaction;
+import me.imsonmia.demoapi.Transaction.TransactionRepository;
 
 @RestController
 @RequestMapping(value = "/api", produces = "application/json")
-class GlobalRestController {
+class FinancialRestController {
     private final EmployeeRepository empRepo;
     private final TransactionRepository transactRepo;
 
-    GlobalRestController(EmployeeRepository empRepo, TransactionRepository transactRepo) {
+    FinancialRestController(EmployeeRepository empRepo, TransactionRepository transactRepo) {
         this.empRepo = empRepo;
         this.transactRepo = transactRepo;
     }
@@ -52,12 +52,24 @@ class GlobalRestController {
         return paymentTargetInCents - totalCompletedTransferAmountInCents;
     }
 
-    @GetMapping("/statement")
-    List<Transaction> getStatement(
+    @GetMapping("/statement/{id}")
+    Statement getStatement(
             @RequestParam("start_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam("end_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
-        List<Transaction> transactionStatement = new ArrayList<>();
-
-        return transactionStatement;
+            @RequestParam("end_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+            @PathVariable Long id) {
+        List<Transaction> transactionsRelated = new ArrayList<>();
+        transactionsRelated.addAll(transactRepo.findByReceiverId(id));
+        transactionsRelated.addAll(transactRepo.findBySenderId(id));
+        List<Transaction> transactionsFiltered = new ArrayList<>();
+        for (Transaction t : transactionsRelated) {
+            LocalDate transactTime = t.getTransactionDate().toLocalDate();
+            // filter invalid transactions (out of accepted date boundaries)
+            if (!(transactTime.isBefore(endDate) &&
+                    transactTime.isAfter(startDate))) {
+                continue;
+            }
+            transactionsFiltered.add(t);
+        }
+        return new Statement(transactionsFiltered, id, startDate, endDate);
     }
 }

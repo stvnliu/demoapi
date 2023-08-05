@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.EmployeeRepository;
+package me.imsonmia.demoapi.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +22,12 @@ import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
 
 @RestController
 @RequestMapping(value = "/employees", produces = "application/json")
-public class EmployeeController {
-    private final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+public class EmployeeRestController {
+    private final Logger log = LoggerFactory.getLogger(EmployeeRestController.class);
 
     private final EmployeeRepository repository;
 
-    EmployeeController(EmployeeRepository repository) {
+    EmployeeRestController(EmployeeRepository repository) {
         this.repository = repository;
     }
 

@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.TransactionRepository;
+package me.imsonmia.demoapi.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,10 @@ import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
 
 @RestController
 @RequestMapping(value = "/transactions", produces = "application/json")
-public class TransactionController {
+public class TransactionRestController {
     private final TransactionRepository repository;
 
-    TransactionController(TransactionRepository repository) {
+    TransactionRestController(TransactionRepository repository) {
         this.repository = repository;
     }
 

@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.TransactionRepository;
+package me.imsonmia.demoapi.Transaction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
