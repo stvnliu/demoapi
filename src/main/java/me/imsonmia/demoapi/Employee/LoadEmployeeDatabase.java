@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.Employee;
+package me.imsonmia.demoapi.employee;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

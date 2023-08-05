@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.ExceptionHandler;
+package me.imsonmia.demoapi.exceptionhandler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

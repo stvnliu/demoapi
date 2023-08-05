@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.Transaction;
+package me.imsonmia.demoapi.transaction;
 
 import java.sql.Date;
 

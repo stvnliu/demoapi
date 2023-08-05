@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.Employee;
+package me.imsonmia.demoapi.employee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
+import me.imsonmia.demoapi.exceptionhandler.DataNotFoundException;
 
 @RestController
 @RequestMapping(value = "/employees", produces = "application/json")
@@ -37,9 +37,9 @@ public class EmployeeRestController {
             @RequestParam Optional<String> role) {
         List<Employee> result = new ArrayList<>();
         if (level.isPresent()) {
-            result = repository.findByEmpLevel(Employee.Level.valueOf(level.get()));
+            result = repository.findAllByEmpLevel(Employee.Level.valueOf(level.get()));
         } else if (role.isPresent()) {
-            result = repository.findByEmpRole(Employee.Role.valueOf(role.get()));
+            result = repository.findAllByEmpRole(Employee.Role.valueOf(role.get()));
         } else {
             // convert Iterator to List
             // https://stackoverflow.com/questions/10117026/convert-iterator-to-list

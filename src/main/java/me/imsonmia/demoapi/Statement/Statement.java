@@ -1,11 +1,11 @@
-package me.imsonmia.demoapi.Statement;
+package me.imsonmia.demoapi.statement;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.imsonmia.demoapi.Transaction.Transaction;
+import me.imsonmia.demoapi.transaction.Transaction;
 
 public class Statement {
     private String statementId;

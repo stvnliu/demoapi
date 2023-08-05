@@ -1,11 +1,11 @@
-package me.imsonmia.demoapi.Transaction;
+package me.imsonmia.demoapi.transaction;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
-    List<Transaction> findBySenderId(Long senderId);
+    List<Transaction> findAllBySenderId(Long senderId);
 
-    List<Transaction> findByReceiverId(Long receiverId);
+    List<Transaction> findAllByReceiverId(Long receiverId);
 }

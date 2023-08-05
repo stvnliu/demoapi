@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.Transaction;
+package me.imsonmia.demoapi.transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
+import me.imsonmia.demoapi.exceptionhandler.DataNotFoundException;
 
 @RestController
 @RequestMapping(value = "/transactions", produces = "application/json")
@@ -33,7 +33,7 @@ public class TransactionRestController {
         List<Transaction> result = new ArrayList<>();
         if (senderId.isPresent()) {
             List<Transaction> intermediateResult = new ArrayList<>();
-            intermediateResult.addAll(repository.findBySenderId(senderId.get()));
+            intermediateResult.addAll(repository.findAllBySenderId(senderId.get()));
             if (receiverId.isPresent()) {
                 // filter out transactions where receiver id does not match
                 for (Transaction transaction : intermediateResult) {
@@ -46,7 +46,7 @@ public class TransactionRestController {
                 result = intermediateResult;
             }
         } else if (receiverId.isPresent()) {
-            result = repository.findByReceiverId(receiverId.get());
+            result = repository.findAllByReceiverId(receiverId.get());
         }
         return result;
     }

@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.ExceptionHandler;
+package me.imsonmia.demoapi.exceptionhandler;
 
 public class DataNotFoundException extends RuntimeException {
     public DataNotFoundException(String msg) {

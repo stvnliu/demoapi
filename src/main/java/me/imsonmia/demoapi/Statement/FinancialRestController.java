@@ -1,4 +1,4 @@
-package me.imsonmia.demoapi.Statement;
+package me.imsonmia.demoapi.statement;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import me.imsonmia.demoapi.Employee.Employee;
-import me.imsonmia.demoapi.Employee.EmployeeRepository;
-import me.imsonmia.demoapi.ExceptionHandler.DataNotFoundException;
-import me.imsonmia.demoapi.Transaction.Transaction;
-import me.imsonmia.demoapi.Transaction.TransactionRepository;
+import me.imsonmia.demoapi.employee.Employee;
+import me.imsonmia.demoapi.employee.EmployeeRepository;
+import me.imsonmia.demoapi.exceptionhandler.DataNotFoundException;
+import me.imsonmia.demoapi.transaction.Transaction;
+import me.imsonmia.demoapi.transaction.TransactionRepository;
 
 @RestController
 @RequestMapping(value = "/api", produces = "application/json")
@@ -44,7 +44,7 @@ class FinancialRestController {
         int months = (calendarCurrent.get(Calendar.YEAR) - calendarInitial.get(Calendar.YEAR)) * 12 +
                 calendarCurrent.get(Calendar.MONTH) - calendarInitial.get(Calendar.MONTH);
         int paymentTargetInCents = salaryInCents * months;
-        List<Transaction> allTransactions = transactRepo.findByReceiverId(id);
+        List<Transaction> allTransactions = transactRepo.findAllByReceiverId(id);
         int totalCompletedTransferAmountInCents = 0;
         for (Transaction t : allTransactions) {
             totalCompletedTransferAmountInCents += t.getTransactionAmountCents();
@@ -58,8 +58,8 @@ class FinancialRestController {
             @RequestParam("end_date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @PathVariable Long id) {
         List<Transaction> transactionsRelated = new ArrayList<>();
-        transactionsRelated.addAll(transactRepo.findByReceiverId(id));
-        transactionsRelated.addAll(transactRepo.findBySenderId(id));
+        transactionsRelated.addAll(transactRepo.findAllByReceiverId(id));
+        transactionsRelated.addAll(transactRepo.findAllBySenderId(id));
         List<Transaction> transactionsFiltered = new ArrayList<>();
         for (Transaction t : transactionsRelated) {
             LocalDate transactTime = t.getTransactionDate().toLocalDate();
