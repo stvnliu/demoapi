@@ -2,6 +2,8 @@ package me.imsonmia.demoapi.employee;
 
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -98,5 +100,11 @@ public class Employee {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

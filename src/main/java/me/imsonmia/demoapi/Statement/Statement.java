@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import me.imsonmia.demoapi.transaction.Transaction;
 
 public class Statement {
@@ -21,7 +23,7 @@ public class Statement {
         setOwnerId(ownerId);
         setStatementFormat(StatementFormat.PDF_LIST);
         String newIdString = "[" + ownerId + "]" + "{" + startDate.format(DateTimeFormatter.ISO_LOCAL_DATE) + "#"
-                + endDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                + endDate.format(DateTimeFormatter.ISO_LOCAL_DATE) + "}";
         setStatementId(newIdString);
         setBalanceInCents(0);
         List<Transaction> tempRevenue = new ArrayList<>();
@@ -106,5 +108,11 @@ public class Statement {
 
     public void setRevenueList(List<Transaction> revenueList) {
         this.revenueList = revenueList;
+    }
+
+    @Override
+    public String toString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

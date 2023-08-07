@@ -1,6 +1,8 @@
 package me.imsonmia.demoapi.transaction;
 
-import java.sql.Date;
+import java.util.Date;
+
+import com.google.gson.Gson;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +16,22 @@ public class Transaction {
     private Long receiverId;
     private String note;
     private Date transactionDate;
+
+    Transaction() {
+    };
+
+    Transaction(
+            int transactionAmountCents,
+            Long senderId,
+            Long receiverId,
+            String note,
+            Date date) {
+        setTransactionAmountCents(transactionAmountCents);
+        setSenderId(senderId);
+        setReceiverId(receiverId);
+        setNote(note);
+        setTransactionDate(date);
+    }
 
     public long getId() {
         return id;
@@ -65,7 +83,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "{" + "id=" + id + ", transactionAmountCents=" + transactionAmountCents + ", senderId=" + senderId
-                + ", receiverId=" + receiverId + ", note=" + note + ", transactionDate=" + transactionDate.toString();
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

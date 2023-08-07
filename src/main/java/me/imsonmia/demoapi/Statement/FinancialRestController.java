@@ -1,6 +1,7 @@
 package me.imsonmia.demoapi.statement;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,7 +63,7 @@ class FinancialRestController {
         transactionsRelated.addAll(transactRepo.findAllBySenderId(id));
         List<Transaction> transactionsFiltered = new ArrayList<>();
         for (Transaction t : transactionsRelated) {
-            LocalDate transactTime = t.getTransactionDate().toLocalDate();
+            LocalDate transactTime = LocalDate.ofInstant(t.getTransactionDate().toInstant(), ZoneId.systemDefault());
             // filter invalid transactions (out of accepted date boundaries)
             if (!(transactTime.isBefore(endDate) &&
                     transactTime.isAfter(startDate))) {
