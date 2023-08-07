@@ -6,9 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import me.imsonmia.demoapi.employee.Employee.Level;
-import me.imsonmia.demoapi.employee.Employee.Role;
-import net.datafaker.Faker;
+// import me.imsonmia.demoapi.employee.Employee.Level;
+// import me.imsonmia.demoapi.employee.Employee.Role;
+// import net.datafaker.Faker;
 
 @Configuration
 public class LoadEmployeeDatabase {
