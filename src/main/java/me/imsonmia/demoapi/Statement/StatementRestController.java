@@ -22,11 +22,11 @@ import me.imsonmia.demoapi.transaction.TransactionRepository;
 
 @RestController
 @RequestMapping(value = "/api", produces = "application/json")
-class FinancialRestController {
+class StatementRestController {
     private final EmployeeRepository empRepo;
     private final TransactionRepository transactRepo;
 
-    FinancialRestController(EmployeeRepository empRepo, TransactionRepository transactRepo) {
+    StatementRestController(EmployeeRepository empRepo, TransactionRepository transactRepo) {
         this.empRepo = empRepo;
         this.transactRepo = transactRepo;
     }
